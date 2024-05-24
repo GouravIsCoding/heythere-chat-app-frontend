@@ -23,7 +23,7 @@ export default function Layout() {
         <Toaster
           position="top-right"
           toastOptions={{
-            duration: 4000,
+            duration: 1500,
             style: {
               width: "18rem",
               height: "4rem",

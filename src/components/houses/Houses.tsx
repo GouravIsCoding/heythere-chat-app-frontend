@@ -59,7 +59,7 @@ export default function Houses() {
               <div key={i}>
                 {group.houses.map((house) => (
                   <li className="list-none" key={house.id}>
-                    <HouseItem house={house} />
+                    <HouseItem variant="list" house={house} />
                   </li>
                 ))}
               </div>

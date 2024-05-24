@@ -32,13 +32,11 @@ export default function Signup() {
   const mutation = useMutation({
     mutationFn: createUser,
     onSuccess(response) {
-      console.log(response.data);
       toast.success(response.data.message);
       navigate("/");
     },
     onError(error) {
       if (error instanceof AxiosError) {
-        console.log(error.response?.data);
         toast.error(error.response?.data.message || error.response?.data.error);
       }
     },

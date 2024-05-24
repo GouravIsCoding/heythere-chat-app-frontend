@@ -14,3 +14,12 @@ export const createHouse = z.object({
 });
 
 export type houseType = z.infer<typeof createHouse>;
+
+export interface houseInfoType extends houseType {
+  joined?: boolean;
+  admin?: {
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+}
