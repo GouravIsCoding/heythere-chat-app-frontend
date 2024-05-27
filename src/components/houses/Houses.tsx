@@ -4,6 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import HouseItem from "./HouseItem";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -53,7 +54,9 @@ export default function Houses() {
         <div className="bg-slate-100 min-h-screen p-8">
           <div>
             <div className="py-2 px-4">
-              <Button className="w-full">Add House +</Button>
+              <Link to={"/house/add"}>
+                <Button className="w-full">Add House +</Button>
+              </Link>
             </div>
             {data.pages.map((group, i) => (
               <div key={i}>

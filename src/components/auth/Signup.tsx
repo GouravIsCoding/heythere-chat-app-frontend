@@ -143,7 +143,7 @@ export default function Signup() {
               name="bio"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Bio</FormLabel>
                   <FormControl>
                     <Textarea
                       className="border-2 border-gray-800"

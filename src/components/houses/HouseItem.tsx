@@ -6,7 +6,6 @@ import axios, { AxiosError } from "axios";
 import { CONFIG } from "@/CONFIG";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import HouseInfo from "./HouseInfo";
 
 const joinHouse = async (houseId: string) => {
   const response = await axios.post(`${CONFIG.BACKEND_URL}/member/add`, {
@@ -83,7 +82,13 @@ export default function HouseItem({
               Description: <span className="text-xl">{house.description}</span>
             </p>
           </div>
-          {joined ? <Button className="w-48 my-3">Chat</Button> : ""}
+          {joined ? (
+            <Link to={`/chat/${house.id}`}>
+              <Button className="w-48 my-3">Chat</Button>
+            </Link>
+          ) : (
+            ""
+          )}
           <Button
             onClick={
               joined

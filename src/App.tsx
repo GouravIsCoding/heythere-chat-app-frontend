@@ -9,6 +9,7 @@ const SignupPage = lazy(() => import("./pages/auth/SignupPage"));
 const SigninPage = lazy(() => import("./pages/auth/SigninPage"));
 const HouseListPage = lazy(() => import("./pages/house/HouseListPage"));
 const HouseInfoPage = lazy(() => import("./pages/house/HouseInfoPage"));
+const CreateHousePage = lazy(() => import("./pages/house/CreateHousePage"));
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />}></Route>
             <Route path="/signin" element={<SigninPage />}></Route>
             <Route path="/houses" element={<HouseListPage />}></Route>
+
+            <Route path="/house/add" element={<CreateHousePage />}></Route>
             <Route path="/house/:id" element={<HouseInfoPage />}></Route>
             <Route path="/chat/:houseId" element={<Chat />}></Route>
           </Route>

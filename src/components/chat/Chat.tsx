@@ -15,7 +15,7 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("ws://192.168.0.176:8080");
     ws.onopen = () => {
       ws.onmessage = (event) => {
         const message = JSON.parse(event.data);
@@ -28,7 +28,7 @@ export default function Chat() {
     };
     ws.onclose = (event) => {
       console.log(event.code);
-      toast.error("Disconnected");
+      toast.error("Disconnected" + JSON.stringify(event));
     };
 
     window.addEventListener("keydown", enterFunction);
@@ -49,8 +49,12 @@ export default function Chat() {
 
   return (
     <>
-      <Input ref={inputRef} />
-      <Button onClick={sendMessage}>Send</Button>
+      <div className="flex justify-center items-center">
+        <Input className="border-2 border-gray-800 m-2" ref={inputRef} />
+        <Button className="w-48 m-2" onClick={sendMessage}>
+          Send
+        </Button>
+      </div>
       <div className="bg-gradient-to-r from-purple-600 to-blue-500 min-h-screen overflow-y-scroll">
         {messages.map((msg) => (
           <div
