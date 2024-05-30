@@ -4,10 +4,12 @@ import { lazy } from "react";
 
 import Chat from "./components/chat/Chat";
 import Layout from "./components/Layout";
+import HouseLayout from "./components/HouseLayout";
 
 const SignupPage = lazy(() => import("./pages/auth/SignupPage"));
 const SigninPage = lazy(() => import("./pages/auth/SigninPage"));
 const HouseListPage = lazy(() => import("./pages/house/HouseListPage"));
+const HouseSearchPage = lazy(() => import("./pages/house/HouseSearchPage"));
 const HouseInfoPage = lazy(() => import("./pages/house/HouseInfoPage"));
 const CreateHousePage = lazy(() => import("./pages/house/CreateHousePage"));
 
@@ -19,7 +21,11 @@ function App() {
           <Route path="" element={<Layout />}>
             <Route path="/signup" element={<SignupPage />}></Route>
             <Route path="/signin" element={<SigninPage />}></Route>
-            <Route path="/houses" element={<HouseListPage />}></Route>
+
+            <Route path="/houses/" element={<HouseLayout />}>
+              <Route path="created" element={<HouseListPage />}></Route>
+              <Route path="search" element={<HouseSearchPage />}></Route>
+            </Route>
 
             <Route path="/house/add" element={<CreateHousePage />}></Route>
             <Route path="/house/:id" element={<HouseInfoPage />}></Route>

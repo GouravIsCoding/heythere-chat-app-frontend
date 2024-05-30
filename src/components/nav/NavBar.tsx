@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const navItems = [
   { id: 1, to: "/signup", name: "Signup" },
   { id: 2, to: "/signin", name: "Signin" },
-  { id: 3, to: "/houses", name: "Houses" },
+  { id: 3, to: "/houses/created", name: "Houses" },
   { id: 4, to: "/logout", name: "Logout" },
 ];
 
