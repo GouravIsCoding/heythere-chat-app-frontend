@@ -6,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import { CONFIG } from "@/CONFIG";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { DeleteButton } from "./DeleteButton";
 
 const joinHouse = async (houseId: string) => {
   const response = await axios.post(`${CONFIG.BACKEND_URL}/member/add`, {
@@ -59,8 +60,8 @@ export default function HouseItem({
   if (variant === "list")
     return (
       <>
-        <div className="flex p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
-          <div className="w-4/5">
+        <div className="flex justify-between items-center p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
+          <div className="w-3/5">
             <p>Name: {house.name}</p>
             <p>
               Description: <span className="text-xl">{house.description}</span>
@@ -69,6 +70,9 @@ export default function HouseItem({
           <Link className="w-1/5" to={`/house/${house.id}`}>
             <Button className="w-48 my-3">View</Button>
           </Link>
+          <div className="w-1/5">
+            <DeleteButton houseId={house.id} />
+          </div>
         </div>
       </>
     );

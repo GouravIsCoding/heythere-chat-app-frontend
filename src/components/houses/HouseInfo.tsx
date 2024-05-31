@@ -17,7 +17,7 @@ export default function HouseInfo() {
   const { id } = useParams<{ id: string }>();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["house", id],
+    queryKey: ["houses", id],
     queryFn: () => fetchHouse(id || ""),
   });
 
