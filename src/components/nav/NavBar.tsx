@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { Logout } from "./Logout";
 
 const navItems = [
   { id: 1, to: "/signup", name: "Signup" },
   { id: 2, to: "/signin", name: "Signin" },
   { id: 3, to: "/houses/created", name: "Houses" },
-  { id: 4, to: "/logout", name: "Logout" },
 ];
 
 export default function NavBar() {
@@ -24,6 +24,7 @@ export default function NavBar() {
               {item.name}
             </NavLink>
           ))}
+          <Logout />
         </div>
       </nav>
     </>
