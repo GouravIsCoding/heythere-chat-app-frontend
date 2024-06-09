@@ -12,10 +12,10 @@ export default function Layout() {
     <>
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<Spinner />}>
-          <div className="flex justify-between">
+          <div className="flex justify-between bg-slate-100">
             <NavBar />
-            <div className="w-1/5"></div>
-            <div className="w-4/5">
+            <div className="w-0 md:w-1/5"></div>
+            <div className="w-[90%] md:w-4/5 min-h-screen">
               <Outlet />
             </div>
           </div>

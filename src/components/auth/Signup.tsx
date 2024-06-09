@@ -18,7 +18,7 @@ import { CONFIG } from "@/CONFIG";
 import { Textarea } from "../ui/textarea";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const createUser = async (newUser: signupSchemaType) => {
   const response = await axios.post(
@@ -156,6 +156,12 @@ export default function Signup() {
                 </FormItem>
               )}
             />
+            <h1>
+              Already have an account?{" "}
+              <Link className="underline" to={"/signup"}>
+                Signin Now
+              </Link>
+            </h1>
             <Button
               disabled={mutation.isPending}
               className="w-full"

@@ -44,7 +44,9 @@ export default function SearchHouse() {
           <Input onInput={debouncedRequest} className="m-2 w-4/5" />
         </div>
         {houses.map((house) => (
-          <HouseItem house={house} variant="list" />
+          <div key={house.id}>
+            <HouseItem house={house} variant="list" />
+          </div>
         ))}
       </div>
     </>

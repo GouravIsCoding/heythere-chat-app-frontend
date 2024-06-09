@@ -18,7 +18,7 @@ import { CONFIG } from "@/CONFIG";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { signinSchema, signinSchemaType } from "@/validators/SigninSchema";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -56,7 +56,7 @@ export default function Signup() {
   return (
     <>
       <FormWrapper>
-        <h1 className="text-2xl font-semibold text-center my-3">Signup Now</h1>
+        <h1 className="text-2xl font-semibold text-center my-3">Signin Now</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -96,6 +96,12 @@ export default function Signup() {
                 </FormItem>
               )}
             />
+            <h1>
+              Don't have an account?{" "}
+              <Link className="underline" to={"/signup"}>
+                Signup Now
+              </Link>
+            </h1>
             <Button
               disabled={mutation.isPending}
               className="w-full"

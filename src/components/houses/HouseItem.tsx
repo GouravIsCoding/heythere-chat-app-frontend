@@ -1,12 +1,13 @@
 import { houseInfoType } from "@/validators/House";
 import { Button } from "../ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { CONFIG } from "@/CONFIG";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { DeleteButton } from "./DeleteButton";
+import { useGetAuthStatus } from "@/hooks/useGetAuthStatus";
 
 const joinHouse = async (houseId: string) => {
   const response = await axios.post(`${CONFIG.BACKEND_URL}/member/add`, {
@@ -57,21 +58,35 @@ export default function HouseItem({
     },
   });
 
+  const { userId } = useGetAuthStatus();
+
   if (variant === "list")
     return (
       <>
-        <div className="flex justify-between items-center p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
-          <div className="w-3/5">
-            <p>Name: {house.name}</p>
-            <p>
-              Description: <span className="text-xl">{house.description}</span>
-            </p>
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center p-4 border-2 bg-white border-slate-500 my-3 mx-1 text-left text-2xl rounded-lg">
+          <div className="w-full md:w-3/6 flex md:justify-start items-center">
+            <div className="w-auto rounded-full bg-slate-800 font-mono text-white px-4 py-2">
+              {house.name.trim()[0].toUpperCase()}
+            </div>
+            <div>
+              <p className="border-b border-slate-400 p-2">
+                Name: {house.name}
+              </p>
+              <p className="text-lg p-2">
+                Description:{" "}
+                <span className="text-md">{house.description}</span>
+              </p>
+            </div>
           </div>
-          <Link className="w-1/5" to={`/house/${house.id}`}>
-            <Button className="w-48 my-3">View</Button>
-          </Link>
-          <div className="w-1/5">
-            <DeleteButton houseId={house.id} />
+          <div className="w-full md:w-2/6 flex justify-center items-center">
+            <Link className="m-2" to={`/house/${house.id}`}>
+              <Button className="md:w-24 md:my-3">View</Button>
+            </Link>
+            {house.adminId === userId && (
+              <div className="m-2">
+                <DeleteButton houseId={house.id} />
+              </div>
+            )}
           </div>
         </div>
       </>
@@ -79,30 +94,40 @@ export default function HouseItem({
   if (variant === "info")
     return (
       <>
-        <div className="flex p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
-          <div className="w-4/5">
-            <p>Name: {house.name}</p>
-            <p>
-              Description: <span className="text-xl">{house.description}</span>
-            </p>
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
+          <div className="w-full md:w-3/6 flex md:justify-start items-center">
+            <div className="w-auto rounded-full bg-slate-800 font-mono text-white px-4 py-2">
+              {house.name.trim()[0].toUpperCase()}
+            </div>
+            <div>
+              <p className="border-b border-slate-400 p-2">
+                Name: {house.name}
+              </p>
+              <p className="text-lg p-2">
+                Description:{" "}
+                <span className="text-md">{house.description}</span>
+              </p>
+            </div>
           </div>
-          {joined ? (
-            <Link to={`/chat/${house.id}`}>
-              <Button className="w-48 my-3">Chat</Button>
-            </Link>
-          ) : (
-            ""
-          )}
-          <Button
-            onClick={
-              joined
-                ? () => mutationLeave.mutate(house.id)
-                : () => mutationJoin.mutate(house.id)
-            }
-            className="w-48 my-3 mx-2"
-          >
-            {joined ? "Joined" : "Join"}
-          </Button>
+          <div className="w-full md:w-2/6 flex justify-center items-center">
+            {joined ? (
+              <Link to={`/chat/${house.id}`}>
+                <Button className="w-24 my-3">Chat</Button>
+              </Link>
+            ) : (
+              ""
+            )}
+            <Button
+              onClick={
+                joined
+                  ? () => mutationLeave.mutate(house.id)
+                  : () => mutationJoin.mutate(house.id)
+              }
+              className="w-24 my-3 mx-2"
+            >
+              {joined ? "Joined" : "Join"}
+            </Button>
+          </div>
         </div>
       </>
     );

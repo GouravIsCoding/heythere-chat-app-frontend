@@ -22,7 +22,6 @@ const getHousesByPage = async ({ pageParam }: { pageParam: number }) => {
         page: pageParam,
       },
     });
-    console.log(response);
     return response.data as responseHouses;
   } catch (error) {
     if (error instanceof AxiosError) console.log(error.response);
@@ -51,7 +50,7 @@ export default function Houses() {
   if (status === "success")
     return (
       <>
-        <div className="bg-slate-100 min-h-screen p-8">
+        <div className="bg-slate-100 min-h-screen py-8 px-2">
           <div>
             <div className="py-2 px-4">
               <Link to={"/house/add"}>

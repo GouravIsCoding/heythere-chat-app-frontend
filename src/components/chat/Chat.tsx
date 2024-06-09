@@ -7,6 +7,7 @@ import axios from "axios";
 import { CONFIG } from "@/CONFIG";
 import { messagetype } from "@/validators/Messages";
 import { useGetAuthStatus } from "@/hooks/useGetAuthStatus";
+import Send from "../svg/send";
 
 export default function Chat() {
   const { houseId } = useParams();
@@ -124,10 +125,10 @@ export default function Chat() {
 
   return (
     <>
-      <div className="flex justify-center items-center fixed top-2 right-2 w-1/2">
+      <div className="flex justify-center items-center fixed top-2 right-2 w-[80%] md:w-1/2">
         <Input className="border-2 border-gray-800 m-2" ref={inputRef} />
-        <Button className="w-48 m-2" onClick={sendMessage}>
-          Send
+        <Button className="md:w-24 m-2" onClick={sendMessage}>
+          <Send />
         </Button>
       </div>
 
