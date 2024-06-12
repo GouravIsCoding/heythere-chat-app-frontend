@@ -8,9 +8,9 @@ export default function HouseLayout() {
           className={({ isActive }) =>
             `font-bold shadow-sm p-2 inline-block ${isActive ? "bg-white" : ""}`
           }
-          to={"/houses/created"}
+          to={"/houses/joined"}
         >
-          Created
+          Joined
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -19,6 +19,14 @@ export default function HouseLayout() {
           to={"/houses/search"}
         >
           Others
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `font-bold shadow-sm p-2 inline-block ${isActive ? "bg-white" : ""}`
+          }
+          to={"/houses/created"}
+        >
+          Created
         </NavLink>
       </nav>
       <Outlet />

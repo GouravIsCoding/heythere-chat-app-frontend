@@ -12,6 +12,7 @@ const HouseListPage = lazy(() => import("./pages/house/HouseListPage"));
 const HouseSearchPage = lazy(() => import("./pages/house/HouseSearchPage"));
 const HouseInfoPage = lazy(() => import("./pages/house/HouseInfoPage"));
 const CreateHousePage = lazy(() => import("./pages/house/CreateHousePage"));
+const JoinedHousesPage = lazy(() => import("./pages/house/JoinedHousesPage"));
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/houses/" element={<HouseLayout />}>
               <Route path="created" element={<HouseListPage />}></Route>
               <Route path="search" element={<HouseSearchPage />}></Route>
+              <Route path="joined" element={<JoinedHousesPage />}></Route>
             </Route>
 
             <Route path="/house/add" element={<CreateHousePage />}></Route>
