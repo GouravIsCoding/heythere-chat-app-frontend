@@ -5,6 +5,7 @@ import { lazy } from "react";
 import Chat from "./components/chat/Chat";
 import Layout from "./components/Layout";
 import HouseLayout from "./components/HouseLayout";
+import { RecoilRoot } from "recoil";
 
 const SignupPage = lazy(() => import("./pages/auth/SignupPage"));
 const SigninPage = lazy(() => import("./pages/auth/SigninPage"));
@@ -17,24 +18,26 @@ const JoinedHousesPage = lazy(() => import("./pages/house/JoinedHousesPage"));
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="" element={<Layout />}>
-            <Route path="/signup" element={<SignupPage />}></Route>
-            <Route path="/signin" element={<SigninPage />}></Route>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Routes>
+            <Route path="" element={<Layout />}>
+              <Route path="/signup" element={<SignupPage />}></Route>
+              <Route path="/signin" element={<SigninPage />}></Route>
 
-            <Route path="/houses/" element={<HouseLayout />}>
-              <Route path="created" element={<HouseListPage />}></Route>
-              <Route path="search" element={<HouseSearchPage />}></Route>
-              <Route path="joined" element={<JoinedHousesPage />}></Route>
+              <Route path="/houses/" element={<HouseLayout />}>
+                <Route path="created" element={<HouseListPage />}></Route>
+                <Route path="search" element={<HouseSearchPage />}></Route>
+                <Route path="joined" element={<JoinedHousesPage />}></Route>
+              </Route>
+
+              <Route path="/house/add" element={<CreateHousePage />}></Route>
+              <Route path="/house/:id" element={<HouseInfoPage />}></Route>
+              <Route path="/chat/:houseId" element={<Chat />}></Route>
             </Route>
-
-            <Route path="/house/add" element={<CreateHousePage />}></Route>
-            <Route path="/house/:id" element={<HouseInfoPage />}></Route>
-            <Route path="/chat/:houseId" element={<Chat />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
     </>
   );
 }

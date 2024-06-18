@@ -1,11 +1,11 @@
 import { CONFIG } from "@/CONFIG";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
 axios.defaults.withCredentials = true;
 
 export function useGetAuthStatus() {
-  const [userId, setUserId] = useState<string>();
+  const [userId, setUserId] = useState<string | null>(null);
   const [authStatus, setAuthStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -15,7 +15,8 @@ export function useGetAuthStatus() {
         setUserId(response.data.userId);
         setAuthStatus(response.data.authStatus);
       } catch (error) {
-        console.error("something went wrong");
+        if (error instanceof AxiosError)
+          setAuthStatus(error.response?.data.authStatus);
       }
     })();
   }, []);

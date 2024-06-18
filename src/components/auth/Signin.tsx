@@ -19,6 +19,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { signinSchema, signinSchemaType } from "@/validators/SigninSchema";
 import { Link, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { AuthStatusAtom } from "@/recoil";
 
 axios.defaults.withCredentials = true;
 
@@ -28,12 +30,15 @@ const createUser = async (user: signinSchemaType) => {
 };
 
 export default function Signup() {
+  const setAuthStatus = useSetRecoilState(AuthStatusAtom);
   const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: createUser,
     onSuccess(response) {
+      setAuthStatus(true);
+      localStorage.setItem("authstatus", "true");
       toast.success(response.data.message);
-      navigate("/");
+      navigate("/houses/joined");
     },
     onError(error) {
       if (error instanceof AxiosError) {

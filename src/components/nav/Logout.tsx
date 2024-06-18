@@ -11,10 +11,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { AuthStatusAtom } from "@/recoil";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 
 axios.defaults.withCredentials = true;
 
@@ -24,12 +26,16 @@ const signout = async () => {
 };
 
 export function Logout() {
+  const setAuthStatus = useSetRecoilState(AuthStatusAtom);
+
   const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: signout,
     onSuccess: (response) => {
+      setAuthStatus(false);
+      localStorage.setItem("authstatus", "false");
       toast.success(response.data.message);
-      navigate("/");
+      navigate("/signin");
     },
     onError: (error) => {
       if (error instanceof AxiosError)

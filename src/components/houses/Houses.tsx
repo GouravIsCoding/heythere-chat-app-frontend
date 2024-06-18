@@ -5,6 +5,7 @@ import axios, { AxiosError } from "axios";
 import HouseItem from "./HouseItem";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import Spinner from "../spinner/Spinner";
 
 axios.defaults.withCredentials = true;
 
@@ -45,6 +46,12 @@ export default function Houses() {
     getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
     getPreviousPageParam: (firstPage, pages) => firstPage.prevCursor,
   });
+  if (error)
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   if (status === "pending")
     return <div className="text-2xl text-center">Loading...</div>;
   if (status === "success")

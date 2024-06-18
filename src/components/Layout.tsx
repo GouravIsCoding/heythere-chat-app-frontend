@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import Spinner from "./spinner/Spinner";
 import NavBar from "./nav/NavBar";
+import ProtectedRoutes from "./wrappers/ProtectedRoutes";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,9 @@ export default function Layout() {
             <NavBar />
             <div className="w-0 md:w-1/5"></div>
             <div className="w-[90%] md:w-4/5 min-h-screen">
-              <Outlet />
+              <ProtectedRoutes>
+                <Outlet />
+              </ProtectedRoutes>
             </div>
           </div>
         </Suspense>

@@ -2,14 +2,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Logout } from "./Logout";
 import Menu from "../svg/menu";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { AuthStatusAtom } from "@/recoil";
 
 const navItems = [
-  { id: 1, to: "/signup", name: "Signup" },
-  { id: 2, to: "/signin", name: "Signin" },
-  { id: 3, to: "/houses/created", name: "Houses" },
+  { id: 1, to: "/signup", name: "Signup", auth: false },
+  { id: 2, to: "/signin", name: "Signin", auth: false },
+  { id: 3, to: "/houses/joined", name: "Houses", auth: true },
 ];
 
 export default function NavBar() {
+  const authStatus = useRecoilValue(AuthStatusAtom);
   const { pathname } = useLocation();
   const [menuOn, setMenuOn] = useState(false);
   useEffect(() => {
@@ -39,22 +42,27 @@ export default function NavBar() {
           </span>
         </div>
         <div className="w-full flex flex-col">
-          {navItems.map((item) => (
-            <NavLink
-              className={({ isActive }) =>
-                `p-2 mx-2 md:inline-block rounded-3xl ${
-                  isActive ? "bg-purple-600" : ""
-                } ${!menuOn ? "hidden" : ""}`
-              }
-              key={item.id}
-              to={item.to}
-            >
-              {item.name}
-            </NavLink>
-          ))}
-          <div className={`md:inline-block ${!menuOn ? "hidden" : ""}`}>
-            <Logout />
-          </div>
+          {navItems.map(
+            (item) =>
+              item.auth === authStatus && (
+                <NavLink
+                  className={({ isActive }) =>
+                    `p-2 mx-2 md:inline-block rounded-3xl ${
+                      isActive ? "bg-purple-600" : ""
+                    } ${!menuOn ? "hidden" : ""}`
+                  }
+                  key={item.id}
+                  to={item.to}
+                >
+                  {item.name}
+                </NavLink>
+              )
+          )}
+          {authStatus && (
+            <div className={`md:inline-block ${!menuOn ? "hidden" : ""}`}>
+              <Logout />
+            </div>
+          )}
         </div>
       </nav>
     </>
