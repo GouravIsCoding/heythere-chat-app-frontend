@@ -8,6 +8,7 @@ import { CONFIG } from "@/CONFIG";
 import { messagetype } from "@/validators/Messages";
 import { useGetAuthStatus } from "@/hooks/useGetAuthStatus";
 import Send from "../svg/send";
+import { giveTime } from "@/helper/time";
 
 export default function Chat() {
   const { houseId } = useParams();
@@ -137,10 +138,9 @@ export default function Chat() {
         className="bg-gradient-to-r from-purple-600 to-blue-500 h-screen overflow-y-auto"
       >
         <div ref={topRef}></div>
-        {messages.map((msg, i, messages) => (
+        {messages.map((msg) => (
           <div
             key={msg.id}
-            id={messages.length - 1 === i ? "bottom" : ""}
             className={`flex ${
               !msg.sender?.id || msg.sender?.id === userId
                 ? "justify-start items-start"
@@ -154,16 +154,23 @@ export default function Chat() {
                   : "bg-white"
               } rounded-md max-w-4/6 inline-block p-2 text-left min-w-36`}
             >
-              <span className="font-bold">
-                {msg.sender?.id !== userId && msg.sender?.id
-                  ? `${msg.sender?.firstname} ${msg.sender?.lastname}`
-                  : "me"}
-              </span>{" "}
+              <div>
+                <span className="text-xs">{giveTime(msg.timestamp)}</span>
+                <div className="border-b border-slate-300 py-2 ">
+                  <div className="font-bold">
+                    {msg.sender?.id !== userId && msg.sender?.id
+                      ? `${msg.sender?.firstname} ${msg.sender?.lastname}`
+                      : "me"}
+                  </div>
+                  <div className="text-xs">{msg.sender?.email}</div>
+                </div>
+              </div>
               <br />
               <span>{msg.text}</span>
             </li>
           </div>
         ))}
+        <div id="bottom"></div>
       </div>
     </>
   );
