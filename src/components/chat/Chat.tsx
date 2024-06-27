@@ -47,7 +47,7 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket("ws://192.168.0.176:8080");
+    const ws = new WebSocket(CONFIG.WEBSOCKET_URL);
     ws.onopen = () => {
       ws.onmessage = (event) => {
         const message = JSON.parse(event.data);
