@@ -1,8 +1,7 @@
-import { useGetAuthStatus } from "@/hooks/useGetAuthStatus";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import Spinner from "../spinner/Spinner";
+
 import { useRecoilValue } from "recoil";
 import { AuthStatusAtom } from "@/recoil";
 

@@ -16,7 +16,7 @@ const fetchHouse = async (id: string) => {
 export default function HouseInfo() {
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["houses", id],
     queryFn: () => fetchHouse(id || ""),
   });

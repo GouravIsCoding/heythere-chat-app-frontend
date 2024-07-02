@@ -18,7 +18,7 @@ const fetchJoinedHouses = async () => {
 };
 
 export default function JoinedHousesList() {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["joinedhouses"],
     queryFn: () => fetchJoinedHouses(),
   });

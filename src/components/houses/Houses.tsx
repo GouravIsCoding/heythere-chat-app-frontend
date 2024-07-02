@@ -43,8 +43,8 @@ export default function Houses() {
     queryKey: ["houses"],
     queryFn: getHousesByPage,
     initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
-    getPreviousPageParam: (firstPage, pages) => firstPage.prevCursor,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    getPreviousPageParam: (firstPage) => firstPage.prevCursor,
   });
   if (error)
     return (
