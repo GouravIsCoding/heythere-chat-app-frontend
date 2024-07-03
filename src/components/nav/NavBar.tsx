@@ -24,7 +24,7 @@ export default function NavBar() {
       <nav
         className={`${
           menuOn ? "w-1/2" : "w-12"
-        } md:w-1/5 text-center text-2xl fixed top-0 left-0 bottom-0 py-10  bg-slate-800 text-white h-screen`}
+        } md:w-1/5 text-center text-2xl fixed top-0 left-0 bottom-0 py-10  bg-slate-800 text-white min-h-screen z-50`}
       >
         <div>
           <h1
