@@ -158,7 +158,7 @@ export default function Signup() {
             />
             <h1>
               Already have an account?{" "}
-              <Link className="underline" to={"/signup"}>
+              <Link className="underline" to={"/signin"}>
                 Signin Now
               </Link>
             </h1>

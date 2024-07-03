@@ -13,14 +13,12 @@ export default function Layout() {
     <>
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<Spinner />}>
-          <div className="flex justify-between bg-slate-100">
-            <NavBar />
-            <div className="w-0 md:w-1/5"></div>
-            <div className="w-[90%] md:w-4/5 min-h-screen">
-              <ProtectedRoutes>
-                <Outlet />
-              </ProtectedRoutes>
-            </div>
+          <NavBar />
+
+          <div className="min-h-screen pt-16">
+            <ProtectedRoutes>
+              <Outlet />
+            </ProtectedRoutes>
           </div>
         </Suspense>
         <Toaster

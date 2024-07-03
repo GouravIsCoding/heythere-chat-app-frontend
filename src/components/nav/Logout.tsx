@@ -45,7 +45,10 @@ export function Logout() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="w-1/2 m-2 self-center" variant="destructive">
+        <Button
+          className="m-2 mx-auto py-2 px-3 block md:inline-block md:text-base text-lg"
+          variant="destructive"
+        >
           Logout
         </Button>
       </AlertDialogTrigger>
@@ -53,7 +56,7 @@ export function Logout() {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure yo want to logout?
+            Are you sure you want to logout?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

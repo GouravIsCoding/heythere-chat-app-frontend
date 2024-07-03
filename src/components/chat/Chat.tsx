@@ -126,7 +126,7 @@ export default function Chat() {
 
   return (
     <>
-      <div className="flex justify-center items-center fixed top-2 right-2 w-[80%] md:w-1/2">
+      <div className="mx-auto flex justify-center items-center fixed bottom-2 w-full px-2">
         <Input className="border-2 border-gray-800 m-2" ref={inputRef} />
         <Button className="md:w-24 m-2" onClick={sendMessage}>
           <Send />
@@ -170,7 +170,7 @@ export default function Chat() {
             </li>
           </div>
         ))}
-        <div id="bottom"></div>
+        <div id="bottom" className="pb-12"></div>
       </div>
     </>
   );
