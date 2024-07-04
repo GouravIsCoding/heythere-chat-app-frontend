@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { AuthStatusAtom } from "@/recoil";
 
-const NonAuthRoutes = ["/signup", "/signin"];
+const NonAuthRoutes = ["/signup", "/signin", "/"];
 
 export default function ProtectedRoutes({
   children,
@@ -24,7 +24,7 @@ export default function ProtectedRoutes({
       navigate("/signin");
     } else if (authStatus && NonAuthRoutes.includes(pathname)) {
       toast.error("You are already signed in!");
-      navigate("/");
+      navigate("/houses/joined");
     }
     setLoading(false);
   }, [pathname]);

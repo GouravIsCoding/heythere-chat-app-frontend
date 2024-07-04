@@ -27,12 +27,12 @@ export default function JoinedHousesList() {
 
   if (data)
     return (
-      <>
+      <div className="bg-slate-100">
         {data.houses.map((house) => (
           <li className="list-none" key={house.id}>
             <HouseItem variant="list" house={house} />
           </li>
         ))}
-      </>
+      </div>
     );
 }

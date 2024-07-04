@@ -14,6 +14,7 @@ const HouseSearchPage = lazy(() => import("./pages/house/HouseSearchPage"));
 const HouseInfoPage = lazy(() => import("./pages/house/HouseInfoPage"));
 const CreateHousePage = lazy(() => import("./pages/house/CreateHousePage"));
 const JoinedHousesPage = lazy(() => import("./pages/house/JoinedHousesPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="" element={<Layout />}>
+              <Route path="/" element={<HomePage />}></Route>
               <Route path="/signup" element={<SignupPage />}></Route>
               <Route path="/signin" element={<SigninPage />}></Route>
 

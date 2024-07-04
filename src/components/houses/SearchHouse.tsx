@@ -33,7 +33,7 @@ export default function SearchHouse() {
     timer = setTimeout(() => {
       const name = e.target?.value;
       searchHouses(name);
-    }, 1000);
+    }, 500);
   };
 
   return (

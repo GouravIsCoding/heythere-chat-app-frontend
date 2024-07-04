@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import Spinner from "./spinner/Spinner";
 import NavBar from "./nav/NavBar";
 import ProtectedRoutes from "./wrappers/ProtectedRoutes";
+import Footer from "./footer/footer";
 
 const queryClient = new QueryClient();
 
@@ -15,11 +16,12 @@ export default function Layout() {
         <Suspense fallback={<Spinner />}>
           <NavBar />
 
-          <div className="min-h-screen pt-16">
+          <div className="min-h-screen pt-12 bg-slate-100">
             <ProtectedRoutes>
               <Outlet />
             </ProtectedRoutes>
           </div>
+          <Footer />
         </Suspense>
         <Toaster
           position="top-right"

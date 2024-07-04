@@ -6,9 +6,10 @@ import { useRecoilValue } from "recoil";
 import { AuthStatusAtom } from "@/recoil";
 
 const navItems = [
-  { id: 1, to: "/signup", name: "Signup", auth: false },
-  { id: 2, to: "/signin", name: "Signin", auth: false },
-  { id: 3, to: "/houses/joined", name: "Houses", auth: true },
+  { id: 1, to: "/", name: "Home", auth: false },
+  { id: 2, to: "/signup", name: "Signup", auth: false },
+  { id: 3, to: "/signin", name: "Signin", auth: false },
+  { id: 4, to: "/houses/joined", name: "Houses", auth: true },
 ];
 
 export default function NavBar() {
@@ -22,7 +23,7 @@ export default function NavBar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 bg-slate-800 text-white py-2 px-2 md:px-10`}
+        className={`z-50 fixed top-0 left-0 right-0 bg-slate-800 text-white py-2 px-2 md:px-10`}
       >
         <h1 className={`font-bold inline-block p-2 text-xl items-center`}>
           HeyThere
