@@ -94,7 +94,7 @@ export default function HouseItem({
   if (variant === "info")
     return (
       <>
-        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center p-4 border-2 bg-white border-slate-500 m-3 text-left text-2xl rounded-lg">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center p-4 border-2 bg-white border-slate-500 mx-3 my-12 text-left text-2xl rounded-lg">
           <div className="w-full md:w-3/6 flex md:justify-start items-center">
             <div className="w-auto rounded-full bg-slate-800 font-mono text-white px-4 py-2">
               {house.name.trim()[0].toUpperCase()}
